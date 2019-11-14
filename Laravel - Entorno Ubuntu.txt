@@ -1,0 +1,23 @@
+Homebrew
+Dependencias brew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+---------------------------------------------------------------------------------------------------------
+
+Composer
+Gestor de paquetes Php
+install composer
+---------------------------------------------------------------------------------------------------------
+
+Git
+Repositorios y Versiones
+---------------------------------------------------------------------------------------------------------
+
+NPM
+sudo npm install && npm run dev
+---------------------------------------------------------------------------------------------------------
+Autenticacion 
+
+Generar rutas auth
+composer require laravel/ui --dev
+php artisan ui vue --auth

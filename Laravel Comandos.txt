@@ -1,0 +1,85 @@
+Crear proyecto
+composer create-project --prefer-dist laravel/laravel NombreProyect
+
+Key Generate
+php artisan key:generate
+---------------------------------------------------------------------------------------------------------
+
+ --- Dependencias ---
+ 
+Imagenes (mostrar img, ocultando rutas)
+composer require intervention/image
+
+Barra debug
+composer require barryvdh/laravel-debugbar --dev
+desactivar .env APP_DEBUG=false
+
+Datatables (Tablas Dinamicas)(Requiere Alias en config/app.php)
+composer require yajra/laravel-datatables-oracle
+Alias:
+'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+Instalar STRIPE(pagos)
+yarn add vue-stripe vue-tables-2 vue-resource
+---------------------------------------------------------------------------------------------------------
+ --- Lenguajes ---
+
+63 Idiomas
+composer require caouecs/laravel-lang:~3.0
+vendor/caouecs/src -> copiar y pegar el idioma -> resources/lang
+cambiar idioma de la aplicacion config/app.php cambiar las variables
+---------------------------------------------------------------------------------------------------------
+
+ --- Paquetes ---
+
+Cashier (Pagos en linea)
+composer require laravel/cashier
+
+IDE Helper
+composer require barryvdh/laravel-ide-helper
+php artisan ide-helper:generate  - Genera documentos de los Modelos 
+php artisan ide-helper:models    - Sobreescribe en los Modelos sus atributos
+php artisan ide-helper:meta      - Autocomplete (IDE PhpStorm)
+---------------------------------------------------------------------------------------------------------
+ --- Migraciones ---
+
+Nota: Tener configurado .env
+
+Correr Migracion de las Tablas
+php artisan migrate
+
+Rollback (paso atras)
+php artisan migtrate:rollback
+
+Borrar todas las Tablas y volver a migrar
+php artisan migrate:fresh
+
+Rehacer tablas y montar seeds
+php artisan migrate:fresh --seed
+
+Migracion (Solo la tabla)
+php artisan make:migration create_table_course_student
+---------------------------------------------------------------------------------------------------------
+ --- Modelos ---
+
+Crear Modelo
+php artisan make:model NombreModel -mf  (-mf = migracion y factoria)
+---------------------------------------------------------------------------------------------------------
+ --- Socialite --- 
+
+Login y registro por Red Social
+composer require laravel/socialite
+---------------------------------------------------------------------------------------------------------
+ --- Sesiones ---
+
+php artisan make:auth
+---------------------------------------------------------------------------------------------------------
+ --- Middleware ---
+
+Roles, Permisos, Privilegios
+php artisan make:middleware NombreMiddleware
+---------------------------------------------------------------------------------------------------------
+ --- Politicas ---
+
+Autorizacion, Permisos
+php artisan make:policy NamePolicy  --model=Class(Relacionar a un Modelo(flag))
