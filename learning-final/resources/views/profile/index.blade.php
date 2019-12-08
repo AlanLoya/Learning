@@ -21,73 +21,102 @@
                             @csrf
                             @method('PUT')
 
+                            
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">
-                                    {{ __("Correo electrónico") }}
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">
+                                        {{ __("Nombre") }}
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            class="form-control"
+                                            name="name"
+                                            disabled
+                                            autofocus
+                                    value="{{$tipo[0]->name}}"
+                                        />
+                                    </div>
+                                </div> 
+                            
+                            <div class="form-group row">
+                                <label for="promedio" class="col-md-4 col-form-label text-md-right" {{$tipo[0]->role_id == 3 ?  " " : "hidden"}}  >
+                                    {{ __("Promedio") }}
                                 </label>
                                 <div class="col-md-6">
                                     <input
-                                        id="email"
-                                        type="email"
-                                        readonly
-                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        name="email"
-                                        value="{{ old('email') ?: $user->email }}"
+                                        id="promedio"
+                                        type="number"
+                                        class="form-control"
+                                        name="promedio"
+                                        min="0"
+                                        max="100"
+                                        {{$tipo[0]->role_id == 3 ?  " " : "hidden"}}                                     
                                         required
                                         autofocus
                                     />
-
-                                    @if($errors->has('email'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
 
+
                             <div class="form-group row">
                                 <label
-                                    for="password"
+                                    for="carrera"
                                     class="col-md-4 col-form-label text-md-right"
                                 >
-                                    {{ __("Contraseña") }}
+                                    {{ __("Carrera") }}
                                 </label>
 
                                 <div class="col-md-6">
                                     <input
-                                        id="password"
-                                        type="password"
-                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password"
-                                        required
-                                    />
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label
-                                    for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right"
-                                >
-                                    {{ __("Confirma la contraseña") }}
-                                </label>
-
-                                <div class="col-md-6">
-                                    <input
-                                        id="password-confirm"
-                                        type="password"
+                                        id="carrera"
+                                        type="text"
                                         class="form-control"
-                                        name="password_confirmation"
+                                        name="carrera"
                                         required
                                     />
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                    <label
+                                        for="puesto"
+                                        class="col-md-4 col-form-label text-md-right"
+                                        {{$tipo[0]->role_id != 3 ?  " " : "hidden"}}  
+                                    >
+                                        {{ __("Puesto") }}
+                                    </label>
+    
+                                    <div class="col-md-6">
+                                        <input
+                                            id="puesto"
+                                            type="text"
+                                            class="form-control"
+                                            name="puesto"
+                                            {{$tipo[0]->role_id != 3 ?  " " : "hidden"}}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                        <label
+                                            for="grado_academico"
+                                            class="col-md-4 col-form-label text-md-right"
+                                            {{$tipo[0]->role_id != 3 ?  " " : "hidden"}}
+                                        >
+                                            {{ __("Grado Academico") }}
+                                        </label>
+        
+                                        <div class="col-md-6">
+                                            <select name="grado_academico" class="form-control" id="grado_academico" {{$tipo[0]->role_id != 3 ?  " " : "hidden"}} required>
+                                                <option value="" selected disabled>Selecciona tú Grado Academico</option>
+                                                <option value="Lic.">Lic.</option>
+                                                <option value="Ing.">Ing.</option>
+                                                <option value="Dr.">Dr.</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
@@ -103,7 +132,7 @@
                 @if( ! $user->teacher)
                     <div class="card">
                         <div class="card-header">
-                            {{ __("Convertirme en profesor de la plataforma") }}
+                            {{ __("Convertirme en Investigador/Coordinador de la plataforma") }}
                         </div>
                         <div class="card-body">
                             <form action="{{ route('solicitude.teacher') }}" method="POST">
@@ -141,7 +170,7 @@
                                         <th>{{ __("ID") }}</th>
                                         <th>{{ __("Nombre") }}</th>
                                         <th>{{ __("Email") }}</th>
-                                        <th>{{ __("Cursos") }}</th>
+                                        <th>{{ __("Proyectos") }}</th>
                                         <th>{{ __("Acciones") }}</th>
                                     </tr>
                                 </thead>
@@ -150,19 +179,6 @@
                     </div>
                 @endif
 
-                @if($user->socialAccount)
-                    <div class="card">
-                        <div class="card-header">
-                            {{ __("Acceso con Socialite") }}
-                        </div>
-                        <div class="card-body">
-                            <button class="btn btn-outline-dark btn-block">
-                                {{ __("Registrado con") }}: <i class="fa fa-{{ $user->socialAccount->provider }}"></i>
-                                {{ $user->socialAccount->provider }}
-                            </button>
-                        </div>
-                    </div>
-                @endif
             </div>
         </div>
     </div>

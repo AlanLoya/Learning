@@ -3,7 +3,7 @@
         <div class="container">
 
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name') }}
+                <img src="{{ asset('images/LogoVCRC.png') }}" style="width: 150px; height:50px;" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,35 +18,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-
                     @include('partials.navigations.' . \App\User::navigation())
-
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        >
-                            {{ __("Selecciona un idioma") }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a
-                                class="dropdown-item"
-                               href="{{ route('set_language', ['es']) }}"
-                            >
-                               {{ __("Español") }}
-                            </a>
-                            <a
-                                    class="dropdown-item"
-                                    href="{{ route('set_language', ['en']) }}"
-                            >
-                                {{ __("Inglés") }}
-                            </a>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>

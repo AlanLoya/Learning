@@ -1,6 +1,16 @@
 <?php
+use App\Campus;
+use App\Instituciones;
 
 Route::get('/set_language/{lang}', 'Controller@setLanguage')->name( 'set_language');
+
+Route::get('register/instituciones', 'InstitucionesController@selectInstituciones')->name( 'register.instituciones');
+Route::get('register/campus', 'CampusesController@selectCampus')->name( 'register.campus');
+
+Route::get('registro', function(){
+	$select = Instituciones::select('id', 'nombre', 'calle', 'numero', 'cp', 'telefono')->get();
+	return view('auth.register', compact('select'));
+})->name('registro');
 
 Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social_auth');
 Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
@@ -43,8 +53,6 @@ Route::group(['middleware' => ['auth']], function () {
 		     ->name('subscriptions.admin');
 		Route::post('/process_subscription', 'SubscriptionController@processSubscription')
 		     ->name('subscriptions.process_subscription');
-		Route::post('/resume', 'SubscriptionController@resume')->name('subscriptions.resume');
-		Route::post('/cancel', 'SubscriptionController@cancel')->name('subscriptions.cancel');
 	});
 
 	Route::group(['prefix' => "invoices"], function() {

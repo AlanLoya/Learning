@@ -10,6 +10,7 @@ use App\Review;
 
 class CourseController extends Controller
 {
+
 	public function show (Course $course) {
 		$course->load([
 			'category' => function ($q) {
@@ -38,7 +39,7 @@ class CourseController extends Controller
 
 		\Mail::to($course->teacher->user)->send(new NewStudentInCourse($course, auth()->user()->name));
 
-		return back()->with('message', ['success', __("Inscrito correctamente al curso")]);
+		return back()->with('message', ['success', __("Inscrito correctamente al Proyecto")]);
 	}
 
 	public function subscribed () {
@@ -55,22 +56,23 @@ class CourseController extends Controller
 			"rating" => (int) request('rating_input'),
 			"comment" => request('message')
 		]);
-		return back()->with('message', ['success', __('Muchas gracias por valorar el curso')]);
+		return back()->with('message', ['success', __('Muchas gracias por valorar el Proyecto')]);
 	}
 
 	public function create () {
 		$course = new Course;
-		$btnText = __("Enviar curso para revisión");
+		$btnText = __("Enviar Proyecto para revisión");
 		return view('courses.form', compact('course', 'btnText'));
 	}
 
 	public function store (CourseRequest $course_request) {
+		//return auth()->user()->id;
 		$picture = Helper::uploadFile('picture', 'courses');
 		$course_request->merge(['picture' => $picture]);
-		$course_request->merge(['teacher_id' => auth()->user()->teacher->id]);
+		$course_request->merge(['teacher_id' => auth()->user()->id]);
 		$course_request->merge(['status' => Course::PENDING]);
 		Course::create($course_request->input());
-		return back()->with('message', ['success', __('Curso enviado correctamente, recibirá un correo con cualquier información')]);
+		return back()->with('message', ['success', __('Proyecto enviado correctamente, recibirá un correo con cualquier información')]);
 	}
 
 	public function edit ($slug) {
@@ -87,15 +89,17 @@ class CourseController extends Controller
 			$course_request->merge(['picture' => $picture]);
 		}
 		$course->fill($course_request->input())->save();
-		return back()->with('message', ['success', __('Curso actualizado')]);
+		return back()->with('message', ['success', __('Proyecto actualizado')]);
 	}
 
 	public function destroy (Course $course) {
 		try {
+			
 			$course->delete();
-			return back()->with('message', ['success', __("Curso eliminado correctamente")]);
+			
+			return back()->with('message', ['success', __("Proyecto eliminado correctamente")]);
 		} catch (\Exception $exception) {
-			return back()->with('message', ['danger', __("Error eliminando el curso")]);
+			return back()->with('message', ['danger', __("Error eliminando el Proyecto")]);
 		}
 	}
 }

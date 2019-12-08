@@ -94,7 +94,9 @@ class Course extends Model
 	}
 
 	public function pathAttachment () {
-		return "/images/courses/" . $this->picture;
+		return '../courses/'.$this->picture;
+		
+		//return "/public/courses/" . $this->picture;
 	}
 
 	public function getRouteKeyName() {

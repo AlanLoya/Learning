@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-    @include('partials.jumbotron', ['title' => 'Cursos a los que estás suscrito', 'icon' => 'table'])
+    @include('partials.jumbotron', ['title' => 'Proyectos  a los que estás suscrito', 'icon' => 'table'])
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
                     @include('partials.courses.card_course')
                 </div>
             @empty
-                <div class="alert alert-dark">{{ __("Todavía no estás suscrito a ningún curso") }}</div>
+                <div class="alert alert-dark">{{ __("Todavía no estás en ningún Proyecto") }}</div>
             @endforelse
         </div>
     </div>

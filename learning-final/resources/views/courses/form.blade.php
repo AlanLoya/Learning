@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-    @include('partials.jumbotron', ['title' => 'Dar de alta un nuevo curso', 'icon' => 'edit'])
+    @include('partials.jumbotron', ['title' => 'Dar de alta un nuevo Proyecto', 'icon' => 'edit'])
 @endsection
 
 @section('content')
@@ -22,12 +22,12 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            {{ __("Información del curso") }}
+                            {{ __("Información del proyecto") }}
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">
-                                    {{ __("Nombre del curso") }}
+                                    {{ __("Nombre del Proyecto") }}
                                 </label>
                                 <div class="col-md-6">
                                     <input
@@ -52,7 +52,7 @@
                                     for="level_id"
                                     class="col-md-4 col-form-label text-md-right"
                                 >
-                                    {{ __("Nivel del curso") }}
+                                    {{ __("Nivel del Proyecto") }}
                                 </label>
                                 <div class="col-md-6">
                                     <select name="level_id" id="level_id" class="form-control">
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __("Categoría del curso") }}</label>
+                            <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __("Categoría del proyecto") }}</label>
                             <div class="col-md-6">
                                 <select name="category_id" id="category_id" class="form-control">
                                     @foreach(\App\Category::groupBy('name')->pluck('name', 'id') as $id => $category)
@@ -83,15 +83,10 @@
                             <div class="col-md-6 offset-4">
                                 <input
                                     type="file"
-                                    class="custom-file-input{{ $errors->has('picture') ? ' is-invalid' : ''}}"
+                                    class="form-control{{ $errors->has('picture') ? ' is-invalid' : ''}}"
                                     id="picture"
                                     name="picture"
                                 />
-                                <label
-                                    class="custom-file-label" for="picture"
-                                >
-                                    {{ __("Escoge una imagen para tu curso") }}
-                                </label>
                             </div>
                         </div>
 
@@ -99,7 +94,7 @@
                             <label
                                 for="description"
                                 class="col-md-4 col-form-label text-md-right">
-                                {{ __("Descripción del curso") }}
+                                {{ __("Descripción del Proyecto") }}
                             </label>
                             <div class="col-md-6">
                                 <textarea
@@ -122,7 +117,7 @@
 
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __("Requisitos para tomar el curso") }}</div>
+                        <div >{{ __("Requisitos para el Proyecto ") }}</div>
                         <div class="card-body">
                             <div class="form-group row">
                                 <label
@@ -190,7 +185,7 @@
 
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __("¿Qué conseguirá el estudiante al finalizar el curso?") }}</div>
+                        <div >{{ __("¿Qué conseguirá el estudiante al finalizar el Proyecto?") }}</div>
 
                         <div class="card-body">
                             <div class="form-group row">

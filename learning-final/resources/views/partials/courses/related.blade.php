@@ -15,7 +15,7 @@
                     <a href="{{ route('courses.detail', $relatedCourse->slug) }}">
                         <img
                             class="d-flex align-self-start"
-                            src="/images/courses/{{ $relatedCourse->picture }}"
+                            src="../courses/{{ $relatedCourse->picture }}"
                             alt="{{ $relatedCourse->name }}"
                         />
                     </a>

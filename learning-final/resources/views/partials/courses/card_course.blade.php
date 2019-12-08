@@ -1,7 +1,7 @@
 <div class="card card-01">
     <img
         class="card-img-top"
-        src="{{ $course->pathAttachment() }}"
+        src="{{ $course->pathAttachment() }}" 
         alt="{{ $course->name }}"
     />
     <div class="card-body">

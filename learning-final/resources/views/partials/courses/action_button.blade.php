@@ -18,7 +18,7 @@
              @endcan
         @else
             <a class="btn btn-subscribe btn-bottom btn-block" href="#">
-                <i class="fa fa-user"></i> {{ __("Soy autor") }}
+                <i class="fa fa-user"></i> {{ __("Soy investigador") }}
             </a>
         @endcan
     @else

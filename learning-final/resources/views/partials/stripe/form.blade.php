@@ -3,7 +3,7 @@
     <input
         class="form-control"
         name="coupon"
-        placeholder="{{ __("¿Tienes un cupón?") }}"
+        placeholder="{{ __("¿Esta seguro de  ingresar a este curso?") }}"
     />
     <input type="hidden" name="type" value="{{ $product['type'] }}" />
     <hr />

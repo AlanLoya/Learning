@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-    @include('partials.jumbotron', ['title' => 'Cursos que imparto', 'icon' => 'building'])
+    @include('partials.jumbotron', ['title' => 'Proyectos que imparto', 'icon' => 'building'])
 @endsection
 
 @section('content')
@@ -37,9 +37,9 @@
                 </div>
             @empty
                 <div class="alert alert-dark">
-                    {{ __("No tienes ningún curso todavía") }}<br />
+                    {{ __("No tienes ningún Proyecto  todavía") }}<br />
                     <a class="btn btn-course btn-block" href="{{ route('courses.create') }}">
-                        {{ __("Crear mi primer curso!") }}
+                        {{ __("Crear mi primer Proyecto!") }}
                     </a>
                 </div>
             @endforelse

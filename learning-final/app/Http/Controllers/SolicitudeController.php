@@ -27,7 +27,7 @@ class SolicitudeController extends Controller
     			\DB::commit();
     			auth()->logout();
     			auth()->loginUsingId($user->id);
-			    return back()->with('message', ['success', __("Felicidades, ya eres instructor en la plataforma")]);
+			    return back()->with('message', ['success', __("Felicidades, ya eres investigador en la plataforma")]);
 		    }
 
 		    return back()->with('message', ['danger', $success]);
